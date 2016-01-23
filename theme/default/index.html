@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>{{ site.title }}</title>
+	<meta name="description" content="{{ site.title }} - {{ site.description }}" />
+	<meta name="keywords" content="{{ site.keywords }}" />
+	<meta name="twitter:title" property="og:title" itemprop="title name" content="{{ site.title }}" />
+	<meta name="twitter:description" property="og:description" itemprop="description" content="{{ site.description }}" />
+	<meta name="twitter:image" property="og:image" itemprop="image" content="{{ path.url }}media/noticios.jpg" />
+	<meta name="twitter:url" property="og:url" itemprop="url" content="{{ path.url }}" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="robots" content="index, follow" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="google" content="notranslate" />
+	<!--[if IEMobile]><meta http-equiv="cleartype" content="on" /><![endif]-->
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="theme-color" content="#f6f5f4" />
+	<meta name="msapplication-navbutton-color" content="#f6f5f4" />
+	<meta name="msapplication-TileImage" content="{{ path.path }}theme/{{ site.theme }}/images/mosquito-logo.png" />
+	<meta name="msapplication-TileColor" content="#f6f5f4" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="apple-mobile-web-app-title" content="{{ site.title }}" />
+	<link rel="icon" sizes="256x256" href="{{ path.path }}theme/{{ site.theme }}/images/mosquito-logo.png" />
+	<link rel="apple-touch-icon" href="{{ path.path }}theme/{{ site.theme }}/images/mosquito-logo.png" />
+	<link rel="stylesheet" type="text/css" href="{{ path.path }}theme/{{ site.theme }}/styles/{{ site.theme }}.css" />
+</head>
+<body>
+
+<header role="banner">
+	<h1><a href="{{ path.url }}" title="{{ site.title }} - {{ site.description }}">{{ site.title }}</a></h1>
+	<nav>
+
+		{{ menu_global }}
+
+		<hr />
+
+		{{ menu_local }}
+	</nav>
+</header>
+<main role="main">
+	{{ content }}
+</main>
+<footer role="contentinfo">
+	<hr />
+	<p>{{ site.title }} &copy; <?= date('Y'); ?></p>
+</footer>
+
+
+<script type="text/javascript" src="{{ path.path }}theme/{{ site.theme }}/scripts/{{ site.theme }}.js"></script>
+</body>
+</html>

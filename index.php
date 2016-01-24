@@ -33,7 +33,6 @@ $_PATH = array(
 	'content' => realpath(dirname(__FILE__)) . '/' . $_CONFIG['content_folder'],
 );
 
-
 $_DATA = array(
 	'site' => $_CONFIG,
 	'path' => $_PATH,
@@ -76,12 +75,14 @@ $_DATA = array(
     $_DATA['metadata']['url'] = $_PATH['url'] . $_QUERY;
 	$_DATA['content'] = $c['content'];
 
-
 // _render
 // -------------------
 function render_template($template, $data, $minify = false, $render = true) {
 
     $tt = new TextTemplate( file_get_contents($template) );
+    $tt->addFilter ("date", function ($input) {
+        return date('d.m.Y @H:i:s', $input);
+    });
     $output = $tt->apply( $data );
 
     if ( $minify ) {
@@ -91,7 +92,6 @@ function render_template($template, $data, $minify = false, $render = true) {
 			array('>', '<', '\\1', ' ', ''),
 			$output
 		);
-
     }
 
     if ( !$render ) { return $output; }
@@ -103,23 +103,21 @@ function render_template($template, $data, $minify = false, $render = true) {
 // -------------------
 require_once 'lib/mosquito-extras.php';
 
-
 // _OUTPUT
 // -------------------
+if (PHP_SAPI == "cli") { // php_sapi_name();
 
-    if (PHP_SAPI == "cli") { // php_sapi_name();
+    // CLI OUTPUT
+    // -------------------
+    build($_DATA);
 
-        // CLI OUTPUT
-        // -------------------
-        build($_DATA);
+} else {
 
-    } else {
-
-        // Frontend OUTPUT
-        // -------------------
-        render_template(
-        	'theme/' . $_CONFIG['theme'] . '/' . $_DATA['metadata']['layout'] . '.html',
-        	$_DATA,
-        	$_CONFIG['minify_output']
-        );
-    }
+    // Frontend OUTPUT
+    // -------------------
+    render_template(
+    	'theme/' . $_CONFIG['theme'] . '/' . $_DATA['metadata']['layout'] . '.html',
+    	$_DATA,
+    	$_CONFIG['minify_output']
+    );
+}

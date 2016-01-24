@@ -5,9 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>{= site.title} {= metadata.title}</title>
 	<meta name="description" content="{= site.title} - {if metadata.description == false}{= site.description}{/if}{if metadata.description != false}{= metadata.description}{/if}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="MobileOptimized" content="320" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+	<!--[if IEMobile]><meta http-equiv="cleartype" content="on" /><![endif]-->
 	<link rel="icon" sizes="256x256" href="{= path.path}theme/{= site.theme}/images/mosquito-logo.png" />
 	<link rel="apple-touch-icon" href="{= path.path}theme/{= site.theme}/images/mosquito-logo.png" />
 	<link rel="stylesheet" type="text/css" href="{= path.path}theme/{= site.theme}/styles/{= site.theme}.css" />

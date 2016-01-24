@@ -15,7 +15,7 @@ $_CONFIG = array(
     'theme' => 'default', // should be located on the /theme folder
     'content_folder' => 'content/',
 	'file_extension' => '.md',
-	'minify_output' => false,
+	'minify_output' => true,
 
     'dist_url' => 'http://localhost:8000/',
     'dist_folder' => 'dist/',
@@ -88,11 +88,8 @@ function render_template($template, $data, $minify = false, $render = true) {
 
     if ( $minify ) {
 
-        $output = preg_replace(
-			array('/\>[^\S ]+/s', '/[^\S ]+\</s', '/(\s)+/s', '/ {2,}/', '/<!--.*?-->|\t|(?:\r?\n[ \t]*)+/s'),
-			array('>', '<', '\\1', ' ', ''),
-			$output
-		);
+        $output = preg_replace('/(?>[^\S ]\s*|\s{2,})(?=(?:(?:[^<]++|<(?!\/?(?:textarea|pre)\b))*+)
+        (?:<(?>textarea|pre)\b|\z))/ix', '', $output );
     }
 
     if ( !$render ) { return $output; }
@@ -103,6 +100,7 @@ function render_template($template, $data, $minify = false, $render = true) {
 // _load extras
 // -------------------
 require_once 'lib/mosquito-extras.php';
+
 
 // _OUTPUT
 // -------------------

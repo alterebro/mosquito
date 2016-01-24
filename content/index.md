@@ -12,15 +12,15 @@ The content directory, file type and some defaults can be changed on the `CONFIG
 ```php
 $_CONFIG = array(
     'title' => 'mosquito',
-	'description' => 'Mosquito is a CMS + SSG built with PHP',
-	'keywords' => 'mosquito, CMS, SSG, PHP, Markdown, static, site, generator, content, system',
-	'language' => 'en',
-	'author' => 'Jorge Moreno aka Moro ( moro.es, @alterebro )',
+    'description' => 'Mosquito is a CMS + SSG built with PHP',
+    'keywords' => 'mosquito, CMS, SSG, PHP, Markdown, static, site, generator, content, system',
+    'language' => 'en',
+    'author' => 'Jorge Moreno aka Moro ( moro.es, @alterebro )',
 
     'theme' => 'default', // should be located on the /theme folder
     'content_folder' => 'content/',
-	'file_extension' => '.md',
-	'minify_output' => false,
+    'file_extension' => '.md',
+    'minify_output' => false,
 
     'dist_url' => 'http://localhost/dist/',
     'dist_folder' => 'dist/',

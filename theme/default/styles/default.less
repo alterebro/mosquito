@@ -665,22 +665,28 @@ body {
 code, kbd, pre, samp {
 	font-family: 'Inconsolata', monospace;
 }
-header[role="banner"] {
-	background-image: url('../images/mosquito-logo.png');
-	background-size: 128px;
-	background-repeat: no-repeat;
-	background-position: top left;
-	padding: 160px 0 0 0;
-}
-
 
 header[role] {
 	float: right;
 	width: 25%;
 	h1 {
-		font-weight: 700;
+		margin: 0;
 		a {
+			display: block;
 			color: @armazon-color-foreground;
+			background-image: url('../images/mosquito-logo.png');
+			background-size: 128px;
+			background-repeat: no-repeat;
+			background-position: top left;
+			padding: 125px 0 0 0;
+			font-weight: 700;
+		}
+	}
+	ul {
+		margin: .5rem 0;
+		list-style: square;
+		ul {
+			list-style: circle;
 		}
 	}
 }
@@ -690,4 +696,20 @@ main[role] {
 }
 footer[role] {
 	clear: both;
+}
+
+
+@media @mobile {
+	body {
+		margin: 2rem auto;
+	}
+	header[role] {
+		float: none;
+		width: auto;
+		margin: 0 0 @armazon-margin 0;
+	}
+	main[role] {
+		float: none;
+		width: auto;
+	}
 }

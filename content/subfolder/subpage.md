@@ -1,6 +1,7 @@
 ## Subpage
 
 Subpage inside the subfolder directory.
+Editing... text page.
 
 Mauris laoreet, eros et sodales sagittis, mi ante laoreet sem, nec aliquet eros leo quis urna. Nam ullamcorper sapien eu sagittis maximus. Maecenas mollis erat ipsum, vel iaculis nisi malesuada at. Curabitur varius laoreet lacinia. Maecenas vel euismod mi. Phasellus id pharetra ligula. Vestibulum lectus leo, sagittis sit amet mauris ut, maximus iaculis nunc. Etiam eu vestibulum odio. Etiam varius tempor ultricies. Integer bibendum neque sit amet turpis dictum euismod.
 

@@ -27,6 +27,7 @@ function navigation( $path, $max_depth = false ) {
 		$_l = $_PATH['url'] . str_replace('.md', '', $_l);
 		$_l .= ( $object->isDir() ) ? '/' : $file_ext;
 		$_n = (substr($object->getFilename(), -3) == '.md') ? str_replace( '.md', '', $object->getFilename() ) : $object->getFilename();
+		$_n = ucfirst( str_replace('-', ' ', $_n) );
 		$_d = $objects->getDepth();
 
 		if (
@@ -34,6 +35,14 @@ function navigation( $path, $max_depth = false ) {
 			!in_array($object->getFilename(), $exclude)
 		) {
 
+			// Replace title with metadata.title
+			$_pn = ( $object->isDir() )
+				? $object->getPathname() . '/index.md'
+				: $object->getPathname();
+			$_c = extract_content($_pn);
+			$_n = ( !empty($_c['metadata']['title']) ) ? $_c['metadata']['title'] : $_n;
+
+			// Link item
 			$a = $dom->createElement( 'a', $_n );
 			$a->setAttribute('href', $_l);
 
@@ -70,8 +79,11 @@ function navigation( $path, $max_depth = false ) {
 			$depth = $objects->getDepth();
 		}
 	}
+
+	// $m_id = str_replace('/', '-', trim( str_replace( $_PATH['root'], '', $path ), '/'));
 	return $dom->saveHtml();
 }
+
 $_DATA['menu_global'] = navigation($_PATH['content'], false);
 
 

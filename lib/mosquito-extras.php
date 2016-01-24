@@ -75,44 +75,6 @@ function navigation( $path, $max_depth = false ) {
 $_DATA['menu_global'] = navigation($_PATH['content'], false);
 
 
-function nav() {
-	global $_PATH;
-	$nav_iterator = new RecursiveIteratorIterator(
-	    new RecursiveDirectoryIterator($_PATH['content'], RecursiveDirectoryIterator::SKIP_DOTS),
-	    RecursiveIteratorIterator::SELF_FIRST,
-	    RecursiveIteratorIterator::CATCH_GET_CHILD // Ignore "Permission denied"
-	);
-
-	$exclude = ['.DS_Store', '404.md', 'index.md'];
-	$ext = ( PHP_SAPI == "cli" ) ? '.html' : '';
-	$output = ['<ul>'];
-	$depth = 1;
-	foreach ($nav_iterator as $nav_item) {
-		$_p = str_replace( $_PATH['content'], '', $nav_item->getPathname() );
-		$_l = $_PATH['url'] . str_replace('.md', '', $_p) . $ext;
-		$_l = str_replace(array('index.html', 'index'), '', $_l);
-
-//		$_d = explode('/', $_p);
-//		$depth = count($_d);
-
-		if ( $nav_item->isFile() && !in_array($_p, $exclude) && (substr($_p, -3) == '.md') ) {
-			$o_item = '<li>';
-			$o_item .= '<a href="'. $_l .'">';
-			$o_item .= $_p . $ext;
-			$o_item .= '</a>';
-			$o_item .= '</li>';
-			$output[] = $o_item;
-
-		}
-
-	}
-	$output[] = '</ul>';
-	return implode('', $output);
-}
-$_DATA['menu_local'] = nav();
-
-
-
 /*
 // TODO : _breadcrumbs
 // -------------------

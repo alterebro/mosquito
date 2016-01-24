@@ -2,7 +2,6 @@
 
 - Sample page inside the root folder.
 
-
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim, nulla vel condimentum efficitur, elit dolor auctor felis, eget porttitor nibh magna ac leo. Vestibulum faucibus arcu lorem, non feugiat lectus posuere ac. Donec massa lorem, congue sed dolor et, ornare vestibulum odio. In lacinia nisi at magna suscipit accumsan. Ut et sem posuere, tristique turpis sit amet, euismod nunc. Mauris id urna justo. Praesent vel aliquam augue. Maecenas ultricies ipsum placerat porta vulputate. Phasellus a magna vel est rhoncus pharetra.
 
 

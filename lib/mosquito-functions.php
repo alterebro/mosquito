@@ -14,6 +14,7 @@ function extract_content($src) {
 		}
 	}
 
+	// TODO : switch to PHP Markdown Extra? (https://github.com/michelf/php-markdown)
 	$Parsedown = new Parsedown();
 	$contents = preg_replace('/<!--(.*)-->/Uis', '', $contents);
 	$content = $Parsedown->text($contents);

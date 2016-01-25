@@ -1,90 +1,82 @@
 <?php
 
-function navigation( $path, $max_depth = false ) {
-	// http://stackoverflow.com/questions/10779546/recursiveiteratoriterator-and-recursivedirectoryiterator-to-nested-html-lists/10780023#10780023
+function navigation($path, $max_depth = false, $level = 1) {
+
 	global $_PATH;
 
-	$objects = new RecursiveIteratorIterator(
-	    new RecursiveDirectoryIterator(
-			$path,
-			RecursiveDirectoryIterator::SKIP_DOTS
-		),
-		RecursiveIteratorIterator::SELF_FIRST,
-	    RecursiveIteratorIterator::CATCH_GET_CHILD
-	);
-	$exclude = ['.DS_Store', '404.md', 'index.md'];
-	$file_ext = ( PHP_SAPI == "cli" ) ? '.html' : '';
+	$dir_items = new DirectoryIterator($path);
+	$dir_exclude = ['.', '..', '.DS_Store', '404.md', 'index.md'];
+	$dir_item_ext = ( PHP_SAPI == "cli" ) ? '.html' : '';
 
-	$dom = new DomDocument("1.0");
-	$list = $dom->createElement("ul");
-	$dom->appendChild($list);
-	$node = $list;
+	$dir_files = [];
 
-	$depth = 0;
-	foreach($objects as $name => $object) {
+	$i = iterator_count($dir_items);
+	foreach ($dir_items as $dir_item) {
+		if ( !in_array($dir_item, $dir_exclude) ) {
 
-		$_l = str_replace( $_PATH['content'], '', $object->getPathname() );
-		$_l = $_PATH['url'] . str_replace('.md', '', $_l);
-		$_l .= ( $object->isDir() ) ? '/' : $file_ext;
-		$_n = (substr($object->getFilename(), -3) == '.md') ? str_replace( '.md', '', $object->getFilename() ) : $object->getFilename();
-		$_n = ucfirst( str_replace('-', ' ', $_n) );
-		$_d = $objects->getDepth();
+			// iterator grows...
+			$i++;
 
-		if (
-			(!$max_depth || ( !empty($max_depth) && $_d <= ($max_depth-1) )) &&
-			!in_array($object->getFilename(), $exclude)
-		) {
+			// Create a link
+			$_link = str_replace( $_PATH['content'], '', $dir_item->getPathname() );
+			$_link = $_PATH['url'] . str_replace('.md', '', $_link);
+			$_link .= ( $dir_item->isDir() ) ? '/' : $dir_item_ext;
 
-			// Replace title with metadata.title
-			$_pn = ( $object->isDir() )
-				? $object->getPathname() . '/index.md'
-				: $object->getPathname();
-			$_c = extract_content($_pn);
-			$_n = ( !empty($_c['metadata']['title']) ) ? $_c['metadata']['title'] : $_n;
+			// Create a default title based on the filename
+			$_name = (substr($dir_item->getFilename(), -3) == '.md') ? str_replace( '.md', '', $dir_item->getFilename() ) : $dir_item->getFilename();
+			$_name = ucfirst( str_replace('-', ' ', $_name) );
 
-			// Link item
-			$a = $dom->createElement( 'a', $_n );
-			$a->setAttribute('href', $_l);
+			// Get the path
+			$_path = $dir_item->getPathname();
 
-		    if ($objects->getDepth() == $depth){
+			// get the file to extract the content
+			$_file = ( $dir_item->isDir() )
+				? $dir_item->getPathname() . '/index.md'
+				: $dir_item->getPathname();
 
-				// depth hasnt changed : add another li
-		        $li = $dom->createElement( 'li' );
-				$li->appendChild( $a );
-		        $node->appendChild( $li );
+			// replace Title with metadata.title
+			$_file_contents = extract_content($_file);
+			$_name = ( !empty($_file_contents['metadata']['title']) ) ? $_file_contents['metadata']['title'] : $_name;
 
-			} elseif ($objects->getDepth() > $depth){
+			// Get metadata order
+			$_order = ( isset($_file_contents['metadata']['order']) && is_numeric($_file_contents['metadata']['order']) ) ? $_file_contents['metadata']['order'] : $i;
 
-				// depth increased : the last li is a non-empty folder
-		        $li = $node->lastChild;
-		        $ul = $dom->createElement( 'ul' );
-		        $li->appendChild( $ul );
-				$_li = $dom->createElement( 'li' );
-				$_li->appendChild( $a );
-		        $ul->appendChild( $_li );
-		        $node = $ul;
 
-		    } else {
-
-				// depth decreased : going up $difference directories
-		        $difference = $depth - $objects->getDepth();
-		        for( $i = 0; $i < $difference; $difference-- ) {
-		            $node = $node->parentNode->parentNode;
-		        }
-		        $li = $dom->createElement( 'li' );
-				$li->appendChild( $a );
-		        $node->appendChild( $li );
-		    }
-
-			$depth = $objects->getDepth();
+			// Populate the array
+			$dir_files[$_order] = [
+				'name' => $_name,
+				'path' => $_path,
+				'file' => $_file,
+				'link' => $_link,
+			];
 		}
 	}
 
-	// $m_id = str_replace('/', '-', trim( str_replace( $_PATH['root'], '', $path ), '/'));
-	return $dom->saveHtml();
+	// Array sort by key
+	ksort($dir_files);
+
+	// Create the HTML output
+	$output_html = '<ul>';
+	foreach ($dir_files as $dir_file) {
+		$output_html .= '<li>';
+		$output_html .= '<a href="'.$dir_file['link'].'">' . $dir_file['name'] . '</a>';
+		// Recursive Looping...
+		if ( is_dir($dir_file['path'])  ) {
+			$level++;
+			if ( empty($max_depth) || ($level <= $max_depth) ) {
+				$output_html .= navigation( $dir_file['path'], $max_depth, $level);
+			}
+			$level--;
+		}
+		$output_html .= '</li>';
+	}
+	$output_html .= '</ul>';
+
+	// Return the created HTML
+	return $output_html;
 }
 
-$_DATA['menu_global'] = navigation($_PATH['content'], false);
+$_DATA['menu_global'] = navigation($_PATH['content']);
 
 
 /*

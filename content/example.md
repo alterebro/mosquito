@@ -1,3 +1,6 @@
+<!--
+title : Example Page (FIRST)
+-->
 ## Example.md
 
 - Sample page inside the root folder.

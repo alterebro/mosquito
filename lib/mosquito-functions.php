@@ -102,21 +102,21 @@ function build($data) {
         $data['metadata'] = array_merge($the_md, $c['metadata']);
     	$data['content'] = $c['content'];
 
+		// Construct Query if needed for breadcrumbs
+		if ($data['site']['use_breadcrumbs']) {
+			$_q = str_replace($data['path']['content'], '', $render_file['source']);
+			$_q = str_replace('.md', '', $_q);
+			$_q = str_replace('/index', '', $_q);
+			$_q = ( $_q == 'index' ) ? '' : $_q;
+			$data['breadcrumbs'] = implode(' / ', breadcrumbs($_q));
+		}
+
         $output = render_template(
         	'theme/' . $data['site']['theme'] . '/' . $data['metadata']['layout'] . '.html',
         	$data,
         	$data['site']['minify_output'],
             false
         );
-
-        /*
-        ob_start();
-            $_DATA = $data; // weird...
-            eval("?> $output <?php ");
-            $out_put = ob_get_contents();
-        ob_end_clean();
-        file_put_contents($render_file['target'], $out_put);
-        */
         file_put_contents($render_file['target'], $output);
 
         print ' - File created : ' . $render_file['target'] . "\n";
@@ -125,5 +125,4 @@ function build($data) {
     print ' - mosquito msg : site built! ' . "\n";
     print " ----------- ";
     print "\n";
-
 }

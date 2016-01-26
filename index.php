@@ -20,6 +20,9 @@ $_CONFIG = array(
     'dist_url' => 'http://localhost:8000/',
     'dist_folder' => 'dist/',
     'dist_extension' => '.html',
+
+    'use_menu_global' => true,
+    'use_breadcrumbs' => true,
 );
 
 $_PATH = array(

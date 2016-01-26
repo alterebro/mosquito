@@ -20,9 +20,14 @@
 	<nav>{= menu_global|raw}</nav>
 </header>
 <main role="main">
+
     <div>
+		<hr />
+		<p><strong>nav</strong> : {= breadcrumbs|raw}</p>
+		<hr />
         {= content|raw}
 
+		<hr />
 		{if metadata.image != false}
 		<figcation>
 	         <img src="{= metadata.image}" width="50%" />

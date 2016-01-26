@@ -1,5 +1,11 @@
 <?php
-
+// --------------------------------------
+// Menu Global : {= menu_global|raw}
+// --
+// Create new menus :
+// $_DATA['your_menu'] = navigation(folder_path:string, maximum_depth:int);
+// Will be available as : {= your_menu|raw}
+// --------------------------------------
 function navigation($path, $max_depth = false, $level = 1) {
 
 	global $_PATH;
@@ -41,7 +47,6 @@ function navigation($path, $max_depth = false, $level = 1) {
 			// Get metadata order
 			$_order = ( isset($_file_contents['metadata']['order']) && is_numeric($_file_contents['metadata']['order']) ) ? $_file_contents['metadata']['order'] : $i;
 
-
 			// Populate the array
 			$dir_files[$_order] = [
 				'name' => $_name,
@@ -76,26 +81,52 @@ function navigation($path, $max_depth = false, $level = 1) {
 	return $output_html;
 }
 
-$_DATA['menu_global'] = navigation($_PATH['content']);
+$_DATA['menu_global'] = ( $_DATA['site']['use_menu_global'] )
+	? navigation($_PATH['content'])
+	: ' {{Error : set config variable "use_menu_global" to true}} ';
 
 
-/*
-// TODO : _breadcrumbs
-// -------------------
-// {{ breadcrumbs }}
-// -------------------
-$breadcrumbs = array(
-    '<a href="'.$_PATH['path'].'" title="Home">Home</a>',
-);
-$breadcrumb_path = [];
-$bread_crumbs = explode('/', $_QUERY);
-foreach ($bread_crumbs as $crumb) {
-    $breadcrumb_path[] = $crumb;
+// --------------------------------------
+// breadcrumbs : {= breadcrumbs|raw}
+// --------------------------------------
+function breadcrumbs($query) {
+	global $_PATH;
+	global $_CONFIG;
 
-    $bc_name = format_filename($crumb);
-    $bc_link = $_PATH['path'] . implode('/', $breadcrumb_path);
-    $breadcrumbs[] = '<a href="'.$bc_link.'" title="'.$bc_name.'">'.$bc_name.'</a>';
+	$_q = explode('/', $query);
+	$_c = []; 		// Helper array
+	$_crumbs = [ 	// Where the items will be stored. started w/home link
+		'<a href="'.$_PATH['url'].'">'. $_CONFIG['title'] .'</a>'
+	];
+	foreach ($_q as $_i) {
 
+		if ( !empty($_i) ) {
+
+			$_c[] = $_i;
+
+			// Get the file where the title is
+			$_ci = $_PATH['content'] . implode('/', $_c);
+			$_ci .= ( is_dir($_ci) ) ? '/index.md'  : '.md';
+
+			// Get the title
+			$_ci_contents = extract_content($_ci);
+			$_ci_name = ucfirst( str_replace('-', ' ', $_i) ); // Default based on filename
+			$_ci_name = ( !empty($_ci_contents['metadata']['title']) ) ? $_ci_contents['metadata']['title'] : $_ci_name;
+			unset ($_ci_contents);
+
+			// Create the link
+			$_ci_link = str_replace( $_PATH['content'], '', $_ci );
+			$_ci_link = $_PATH['url'] . str_replace('.md', '', $_ci_link);
+			if ( substr($_ci_link, -5) == 'index' ) { $_ci_link = substr($_ci_link, 0, -5); }
+			else { $_ci_link .= ( PHP_SAPI == "cli" ) ? '.html' : ''; }
+
+			// Add it
+			$_crumbs[] = '<a href="'.$_ci_link.'">'. $_ci_name .'</a>';
+		}
+	}
+	return $_crumbs;
 }
-$_DATA['breadcrumbs'] = implode(' / ', $breadcrumbs);
-*/
+
+$_DATA['breadcrumbs'] = ( $_DATA['site']['use_breadcrumbs'] )
+	? implode(' / ', breadcrumbs($_QUERY))
+	: ' {{Error : set config variable "use_breadcrumbs" to true}} ';

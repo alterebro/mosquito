@@ -1,5 +1,4 @@
 <!--
-order : 2
 title : Subfolder main page
 -->
 ## This is a subfolder index page

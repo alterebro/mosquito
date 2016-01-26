@@ -12,7 +12,7 @@ $_CONFIG = array(
 	'language' => 'en',
 	'author' => 'Jorge Moreno aka Moro ( moro.es, @alterebro )',
 
-    'theme' => 'default', // should be located on the /theme folder
+    'theme' => 'mosquito', // should be located on the /theme folder
     'content_folder' => 'content/',
 	'file_extension' => '.md',
 	'minify_output' => true,

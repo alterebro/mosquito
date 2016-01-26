@@ -111,7 +111,14 @@ if (PHP_SAPI == "cli") { // php_sapi_name();
 
     // CLI OUTPUT
     // -------------------
-    build($_DATA);
+    if ( !empty($argv[1]) && $argv[1] == 'build' ) {
+
+        build($_DATA);
+
+    } else {
+
+        print "use argument 'build' to generate the static site.\n";
+    }
 
 } else {
 

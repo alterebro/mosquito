@@ -47,15 +47,35 @@ function recurse_copy($src,$dst, $exclude = array()) {
     closedir($dir);
 }
 
+function recursive_remove_dir($directory) {
+    foreach( glob("{$directory}/*") as $file) {
+        if(is_dir($file)) {
+            recursive_remove_dir($file);
+        } else {
+            unlink($file);
+        }
+    }
+	@rmdir($directory);
+}
+
 function build($data) {
 
     print " ----------- ";
     print "\n";
     print ' - mosquito msg : init building ' . "\n";
 
-    // TODO : remove first everything on/and the destination folder
 	$target_folder = $data['path']['root'] . $data['site']['dist_folder'];
-	if (!is_dir($target_folder)) {
+
+	// If already exists, remove all to create a clean generated site.
+	if ( is_dir($target_folder) ) {
+		print ' - Removing existing content on distributable folder' . "\n";
+		recursive_remove_dir($target_folder);
+		print ' - Existing content on distributable folder erased from existence' . "\n";
+	}
+
+	// Create the distributable folder
+	if ( !is_dir($target_folder) ) {
+		print ' - Creating distributable folder content...' . "\n";
 		mkdir($target_folder, 0755, true);
 	}
 

@@ -7,9 +7,9 @@
 @armazon-mobile-breakpoint 		: 580;		// width to filter mobile devices
 @armazon-desktop-breakpoint 	: 960; 		// width to fire desktop layout filtering
 
-@armazon-margin 				: 3.6rem; 	// Global margin
-@armazon-columns-margin 		: 4; 		// Amount of percent margin on Grid Columns ( Percentual Value )
-@armazon-columns-tablet-margin 	: 3.6; 		// Percent margin when breaking into Tablet Mode
+@armazon-margin 				: 4rem; 	// Global margin
+@armazon-columns-margin 		: 5; 		// Amount of percent margin on Grid Columns ( Percentual Value )
+@armazon-columns-tablet-margin 	: 3.5; 		// Percent margin when breaking into Tablet Mode
 
 @armazon-color-background 		: #f3f2f1;	// Global Background Color
 @armazon-color-foreground 		: #3b3b3b; 	// Global Foreground & Text Color
@@ -654,65 +654,78 @@ blockquote, figure, table, dl, form {
 // --------------------------------------------
 // Author's custom styles :
 
-@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,700|Oswald:400,300,700|Inconsolata:400,700');
 
+body > * {
+	font-family: 'Roboto', serif;
+	font-size: 1.5rem;
+}
+html {
+	background: @armazon-color-background;
+}
 body {
+	background: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
 	width: 90%;
-	max-width: 980px;
-	margin: 4rem auto;
-	font-family: 'Merriweather', serif;
+	max-width: 920px;
+	margin: @armazon-margin auto;
+	padding: @armazon-margin;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0rem;
 }
 code, kbd, pre, samp {
 	font-family: 'Inconsolata', monospace;
 }
 
 header[role] {
-	float: right;
-	width: 25%;
+	#mosquito-logo {
+		min-height: 130px;
+		background-image: url('../images/mosquito-logo.png');
+		background-size: 128px;
+		background-repeat: no-repeat;
+		background-position: right center;
+	}
 	h1 {
-		margin: 0;
+		margin: 1rem 0 0 0;
 		a {
-			display: block;
 			color: @armazon-color-foreground;
-			background-image: url('../images/mosquito-logo.png');
-			background-size: 128px;
-			background-repeat: no-repeat;
-			background-position: top left;
-			padding: 125px 0 0 0;
-			font-weight: 700;
-			border-bottom: none;
+			border: none;
 		}
 	}
-	ul {
-		margin: .5rem 0;
-		padding-bottom: 3rem;
-		list-style: square;
-		ul {
-			list-style: circle;
-			padding-bottom: 0;
-		}
+	h2 {
+		font-size: 1.6rem;
+		margin: 0;
+		color: darken(@armazon-color-neutral, 10%);
 	}
 }
 main[role] {
-	float: left;
-	width: 70%;
+	nav {
+		ul {
+			margin: .5rem 0 0 0;
+			padding: 0;
+			li {
+				list-style: none;
+				a {
+					display: block;
+					font-family: 'Oswald', serif;
+					font-weight: 400;
+					text-transform: uppercase;
+					text-align: right;
+					letter-spacing: 0rem;
+				}
+			}
+		}
+	}
 }
 footer[role] {
-	clear: both;
-}
-
-
-@media @mobile {
-	body {
-		margin: 2rem auto;
-	}
-	header[role] {
-		float: none;
-		width: auto;
-		margin: 0 0 @armazon-margin 0;
-	}
-	main[role] {
-		float: none;
-		width: auto;
+	p {
+		font-size: 80%;
+		color: darken(@armazon-color-neutral, 10%);
+		border-top: dotted lighten(@armazon-color-neutral, 10%) 1px;
+		padding: @armazon-margin/2 0 0 0;
 	}
 }

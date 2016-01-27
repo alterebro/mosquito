@@ -2,7 +2,7 @@
 order : 1
 -->
 
-## Basic Info
+## Quick Start
 
 Generating a Static Site :
 

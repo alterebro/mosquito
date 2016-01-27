@@ -3,10 +3,10 @@
 // Menu Global : {= menu_global|raw}
 // --
 // Create new menus :
-// $_DATA['your_menu'] = navigation(folder_path:string, maximum_depth:int);
+// $_DATA['your_menu'] = navigation(index_name:string, folder_path:string, maximum_depth:int);
 // Will be available as : {= your_menu|raw}
 // --------------------------------------
-function navigation($path, $max_depth = false, $level = 1) {
+function navigation($path, $root_item = false, $max_depth = false, $level = 1) {
 
 	global $_PATH;
 
@@ -45,6 +45,7 @@ function navigation($path, $max_depth = false, $level = 1) {
 			$_name = ( !empty($_file_contents['metadata']['title']) ) ? $_file_contents['metadata']['title'] : $_name;
 
 			// Get metadata order
+			// TODO : Check for collisions
 			$_order = ( isset($_file_contents['metadata']['order']) && is_numeric($_file_contents['metadata']['order']) ) ? $_file_contents['metadata']['order'] : $i;
 
 			// Populate the array
@@ -62,8 +63,8 @@ function navigation($path, $max_depth = false, $level = 1) {
 
 	// Create the HTML output
 	$output_html = '<ul>';
-	// TODO : Change this for the metadata.title of the root index file.
-	$output_html .= ( $level == 1) ? '<li><a href="'.$_PATH['url'].'">Home</a></li>' : '';
+	// Add first 'home' item
+	$output_html .= ( $level == 1 && $root_item) ? '<li><a href="'.$_PATH['url'].'">'.$root_item.'</a></li>' : '';
 	foreach ($dir_files as $dir_file) {
 		$output_html .= '<li>';
 		$output_html .= '<a href="'.$dir_file['link'].'">' . $dir_file['name'] . '</a>';
@@ -84,7 +85,7 @@ function navigation($path, $max_depth = false, $level = 1) {
 }
 
 $_DATA['menu_global'] = ( $_DATA['site']['use_menu_global'] )
-	? navigation($_PATH['content'])
+	? navigation($_PATH['content'], $_CONFIG['title'])
 	: ' {{Error : set config variable "use_menu_global" to true}} ';
 
 

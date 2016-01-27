@@ -656,20 +656,28 @@ blockquote, figure, table, dl, form {
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,300,700|Oswald:400,300,700|Inconsolata:400,700');
 
-body > * {
-	font-family: 'Roboto', serif;
-	font-size: 1.5rem;
-}
 html {
 	background: @armazon-color-background;
 }
 body {
 	background: #fff;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
-	width: 90%;
-	max-width: 920px;
-	margin: @armazon-margin auto;
-	padding: @armazon-margin;
+
+	width: auto;
+	max-width: auto;
+	margin: 1rem;
+	padding: @armazon-margin/2;
+	@media @desktop {
+		width: 90%;
+		max-width: 920px;
+		margin: @armazon-margin auto;
+		padding: @armazon-margin;
+	}
+}
+
+body > * {
+	font-family: 'Roboto', serif;
+	font-size: 1.5rem;
 }
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Oswald', serif;
@@ -682,15 +690,19 @@ code, kbd, pre, samp {
 }
 
 header[role] {
+	text-align: center;
+	@media @desktop { text-align: left; }
+
 	#mosquito-logo {
 		min-height: 130px;
 		background-image: url('../images/mosquito-logo.png');
 		background-size: 128px;
 		background-repeat: no-repeat;
-		background-position: right center;
+		background-position: center center;
+		@media @desktop { background-position: right center; }
 	}
 	h1 {
-		margin: 1rem 0 0 0;
+		@media @desktop { margin: 1rem 0 0 0; }
 		a {
 			color: @armazon-color-foreground;
 			border: none;
@@ -704,11 +716,15 @@ header[role] {
 }
 main[role] {
 	nav {
+		margin: 0 0 @armazon-margin/2 0;
+
 		ul {
-			margin: .5rem 0 0 0;
+			margin: .25rem 0 0 0;
 			padding: 0;
 			li {
+				display: inline-block;
 				list-style: none;
+				padding: .25rem 0;
 				a {
 					display: block;
 					font-family: 'Oswald', serif;
@@ -716,10 +732,18 @@ main[role] {
 					text-transform: uppercase;
 					text-align: right;
 					letter-spacing: 0rem;
+					margin: 0 1rem 0 0;
 				}
+				@media @desktop {
+					display: block;
+					a { margin: 0; }
+				}
+
 			}
 		}
 	}
+	margin-bottom: 0;
+	@media @desktop { margin-bottom: @armazon-margin/2; }
 }
 footer[role] {
 	p {
@@ -727,5 +751,12 @@ footer[role] {
 		color: darken(@armazon-color-neutral, 10%);
 		border-top: dotted lighten(@armazon-color-neutral, 10%) 1px;
 		padding: @armazon-margin/2 0 0 0;
+	}
+
+	margin-bottom: 0;
+	text-align: center;
+	@media @desktop {
+		margin-bottom: @armazon-margin/2;
+		text-align: left;
 	}
 }

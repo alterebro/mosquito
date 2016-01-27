@@ -62,6 +62,8 @@ function navigation($path, $max_depth = false, $level = 1) {
 
 	// Create the HTML output
 	$output_html = '<ul>';
+	// TODO : Change this for the metadata.title of the root index file.
+	$output_html .= ( $level == 1) ? '<li><a href="'.$_PATH['url'].'">Home</a></li>' : '';
 	foreach ($dir_files as $dir_file) {
 		$output_html .= '<li>';
 		$output_html .= '<a href="'.$dir_file['link'].'">' . $dir_file['name'] . '</a>';

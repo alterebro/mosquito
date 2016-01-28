@@ -7,7 +7,7 @@ require_once 'lib/mosquito-functions.php';
 
 $_CONFIG = array(
     'title' => 'mosquito',
-	'description' => 'Mini flyweight Static Site Generator written in PHP that can also be used as simple CMS, compiles Markdown files into HTML using the folder structure given as URL router.',
+	'description' => 'Mini flyweight Static Site Generator written in PHP that can also be used as simple CMS, compiles Markdown files into HTML using the given folder structure as URL router model.',
 	'keywords' => 'mosquito, CMS, SSG, PHP, Markdown, static, site, generator, content, system',
 	'language' => 'en',
 	'author' => 'Jorge Moreno aka Moro ( moro.es, @alterebro )',

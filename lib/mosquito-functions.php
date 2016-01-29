@@ -60,6 +60,7 @@ function recursive_remove_dir($directory) {
 
 function build($data) {
 
+	print "\n";
     print " ----------- ";
     print "\n";
     print ' - mosquito msg : init building ' . "\n";
@@ -143,6 +144,8 @@ function build($data) {
     }
 
     print ' - mosquito msg : site built! ' . "\n";
-    print " ----------- ";
+    print " ----------- " . "\n";
+	print ' - Your site can now be reached at : ' . $data['site']['dist_url']  . "\n";
+	print " ----------- " . "\n";
     print "\n";
 }

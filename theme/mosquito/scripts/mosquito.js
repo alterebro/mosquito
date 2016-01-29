@@ -41,7 +41,7 @@ function init_share() {
 				}
 			}
 	}
-
 }
 
 init_share();
+hljs.initHighlightingOnLoad();

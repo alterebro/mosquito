@@ -703,7 +703,7 @@ code, kbd, pre, samp {
 	font-family: 'Inconsolata', monospace;
 }
 pre code {
-	text-shadow: 0 -1px 0 #000;
+//	text-shadow: 0 -1px 0 #000;
 }
 
 header[role] {
@@ -856,4 +856,38 @@ ul.social-share {
 		}
 
 	}
+}
+
+
+
+.hljs{}
+.hljs,.hljs-subst{}
+.hljs-keyword,.hljs-attribute,.hljs-selector-tag,.hljs-meta-keyword,.hljs-doctag,.hljs-name {
+	font-weight: bold;
+	color: @armazon-color-aux;
+}
+.hljs-_,.hljs-built_in,.hljs-literal,.hljs-bullet,.hljs-code,.hljs-addition {
+	color: #fff;
+}
+.hljs-regexp,.hljs-symbol,.hljs-variable,.hljs-template-variable,.hljs-link,.hljs-selector-attr,.hljs-selector-pseudo {
+	color: #BC6060;
+}
+.hljs-type,.hljs-string,.hljs-number,.hljs-selector-id,.hljs-selector-class,.hljs-quote,.hljs-template-tag,.hljs-deletion {
+	color: lighten(@armazon-color-primary, 25%);
+}
+.hljs-title,.hljs-section {
+	color: #880000;
+	font-weight: bold;
+}
+.hljs-comment {
+	color: #aaa;
+}
+.hljs-meta {
+	color: #2B6EA1;
+}
+.hljs-emphasis {
+	font-style: italic;
+}
+.hljs-strong {
+	font-weight: bold;
 }

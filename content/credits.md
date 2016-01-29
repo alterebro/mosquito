@@ -4,7 +4,7 @@ order : 5
 
 ## Credits
 
-Copyright (c) 2016 Jorge Moreno ( [@alterebro](https://twitter.com/alterebro) )
+**mosquito** created by Jorge Moreno aka **[moro](http://moro.es)** ( Twitter : [@alterebro](https://twitter.com/alterebro) )
 
 ### Libraries Used :
 

@@ -1,11 +1,10 @@
 <!--
 order : 3
-image : https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg
 -->
 
 ## Customization
 
-The content directory, file type and some defaults can be changed on the `CONFIG` array located within the main file `ìndex.php`
+The content directory, file type and some defaults can be changed on the `CONFIG` array located within the main file `ìndex.php`. Most of these key-value pairs ar self explanatory :
 
 ```php
 $_CONFIG = array(
@@ -28,3 +27,5 @@ $_CONFIG = array(
     'use_breadcrumbs' => true,
 );
 ```
+
+You should take extra attention to the key value called `dist_url` as that one will define the final URL where your project will be hosted, when you are using mosquito on your local machine with the PHP built in server, the value `http://localhost:8000/` will be alright, but once you are ready to deploy on a remote server you should change that for the remote URL, if your website will be reached at `http://myamazingstaticwebsite.com` , that has to be the value.

@@ -13,12 +13,12 @@ your computer. Just follow these steps :
 - Preview your generated site, with the following command <br />`$ php -S localhost:8000 -t dist` <br />a local web server will start on the URL http://localhost:8000
 - That's all, now you can modify the contents of the site by creating/editing markdown files on the `/content` folder.
 
-### Ultra-Fast Start
+## Ultra-Fast Start
 
 Using this other option is even faster, open a terminal, run the following one-liner command and you'll have a mosquito site running on the URL http://localhost:8000 in a matter of seconds.
 
 ```bash
-mkdir mosquito && curl -L https://github.com/alterebro/mosquito/tarball/v0.1.0 | tar zx -C mosquito --strip-components=1 && cd mosquito && php -f index.php build && php -S localhost:8000 -t dist
+mkdir mosquito && curl -L https://github.com/alterebro/mosquito/tarball/v0.1.0 | tar zx -C mosquito --strip-components=1 && cd mosquito && mkdir media && php -f index.php build && php -S localhost:8000 -t dist
 ```
 
 The line above execute the following commands altogether:
@@ -29,6 +29,8 @@ $ mkdir mosquito
 $ curl -L https://github.com/alterebro/mosquito/tarball/v0.1.0 | tar zx -C mosquito --strip-components=1
 # It gets inside the created folder
 $ cd mosquito
+# create the assets folder
+$ mkdir media
 # Builds and generates the Static Site.
 $ php -f index.php build
 # Starts a web server on http://localhost:8000

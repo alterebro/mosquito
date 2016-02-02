@@ -57,6 +57,7 @@ $_DATA = array(
 	// 'my_var' => 'default my_var value', // accesible on {{ my_var }}
 	// 'my_var_02' => 'default my_var_02 value', // accesible on {{ my_var_02 }}
 );
+$_default_metadata = $_DATA['metadata'];
 
 	// Get the Query URL Parameter.
 	$_QUERY = (!empty($_GET['q'])) ? $_GET['q'] : '';
@@ -76,7 +77,7 @@ $_DATA = array(
 	// -------------------
     $file_to_extract = ( file_exists($_DATA['file']) ) ? $_DATA['file'] : $_PATH['content'] .'404'. $_CONFIG['file_extension'];
     $c = extract_content( $file_to_extract );
-	$_DATA['metadata'] = array_merge($_DATA['metadata'], $c['metadata']);
+	$_DATA['metadata'] = array_merge($_default_metadata, $c['metadata']);
     $_DATA['metadata']['url'] = $_PATH['url'] . $_QUERY;
 	$_DATA['content'] = $c['content'];
 
@@ -114,6 +115,7 @@ if (PHP_SAPI == "cli") { // php_sapi_name();
     // -------------------
     if ( !empty($argv[1]) && $argv[1] == 'build' ) {
 
+        $_DATA['metadata'] = $_default_metadata;
         build($_DATA);
 
     } else {

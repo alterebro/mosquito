@@ -1,4 +1,6 @@
 <?php
+use \Michelf\MarkdownExtra;
+
 function extract_content($src) {
 
 	$contents = file_get_contents( $src );
@@ -14,10 +16,9 @@ function extract_content($src) {
 		}
 	}
 
-	// TODO : switch to PHP Markdown Extra? (https://github.com/michelf/php-markdown)
-	$Parsedown = new Parsedown();
 	$contents = preg_replace('/<!--(.*)-->/Uis', '', $contents);
-	$content = $Parsedown->text($contents);
+	$MarkdownParser = new MarkdownExtra;
+	$content = $MarkdownParser->transform($contents);
 
 	unset($contents);
 	return array(

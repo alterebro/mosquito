@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 date_default_timezone_set('UTC');
-require_once 'lib/parsedown.php';
+require_once 'lib/MarkdownExtra.inc.php';
 require_once 'lib/text-template.php';
 require_once 'lib/mosquito-functions.php';
 

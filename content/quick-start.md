@@ -9,7 +9,7 @@ order : 1
 **mosquito** is simple and easy, you only need a couple of minutes to have a fully operational website running on
 your computer. Just follow these steps :
 
-- Download the latest **mosquito** release from the project repository : https://github.com/alterebro/mosquito/releases/latest and unzip the package or clone it `git clone --depth=1 git://github.com/alterebro/mosquito.git`
+- Download the latest **mosquito** release from the project repository : [https://github.com/alterebro/mosquito/releases/latest](https://github.com/alterebro/mosquito/releases/latest) and unzip the package or clone it `git clone --depth=1 git://github.com/alterebro/mosquito.git`
 - Open a terminal and go wherever you have put the unpacked mosquito files <br />`cd /my/folder/mosquito/`
 - Run the build script <br />`$ php -f index.php build` <br />This command will generate the static site on the folder `/dist`
 - Preview your generated site, with the following command <br />`$ php -S localhost:8000 -t dist` <br />a local web server will start on the URL http://localhost:8000

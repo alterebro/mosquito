@@ -10,13 +10,15 @@ order : 4
 
 These are the global template variables, the ones that describe the website and are defined on the main configuration array located on the `index.php` file under the `$_CONFIG` array variable.
 
+
 ```
-{= site.title}
-{= site.description}
-{= site.keywords}
-{= site.language}
-{= site.author}
+{$ site.title}
+{$ site.description}
+{$ site.keywords}
+{$ site.language}
+{$ site.author}
 ```
+
 
 #### Page Variables (metadata)
 
@@ -30,28 +32,26 @@ my_custom_variable_02 : Another custom variable
 You can access them later using the normal template variable syntax used in mosquito: {= my_custom_variable_01}. These are the default Page template variables :
 
 ```
-{= metadata.title}
-{= metadata.description}
-{= metadata.image}
-{= metadata.tags}
-{= metadata.layout}
-{= metadata.timestamp|date}
-{= metadata.url}
+{$ metadata.title}
+{$ metadata.description}
+{$ metadata.image}
+{$ metadata.tags}
+{$ metadata.layout}
+{$ metadata.timestamp|date}
+{$ metadata.url}
 ```
 
 #### Main content :
 
-These are used along with the filter `raw` as they include HTML code that doesn't need to be escaped.
-
 ```
-{= content|raw}
-{= menu_global|raw}
-{= breadcrumbs|raw}
+{$ content}
+{$ menu_global}
+{$ breadcrumbs}
 ```
 
 #### Helper vars:
 
 ```
-{= path.url}
-{= is_404}
+{$ path.url}
+{$ is_404}
 ```

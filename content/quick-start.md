@@ -1,4 +1,6 @@
 <!--
+title : Quick Start
+description : How to start with mosquito in some simple steps
 order : 1
 -->
 

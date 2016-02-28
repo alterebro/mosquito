@@ -2,7 +2,6 @@
 header('Content-Type: text/html; charset=utf-8');
 date_default_timezone_set('UTC');
 require_once 'lib/MarkdownExtra.inc.php';
-require_once 'lib/text-template.php';
 require_once 'lib/div.php';
 require_once 'lib/mosquito-functions.php';
 
@@ -86,13 +85,6 @@ $_default_metadata = $_DATA['metadata'];
 // -------------------
 function render_template($template, $data, $minify = false, $render = true) {
 
-/*
-    $tt = new TextTemplate( file_get_contents($template) );
-    $tt->addFilter ("date", function ($input) {
-        return date('d.m.Y @H:i:s', $input);
-    });
-    $output = $tt->apply( $data );
-*/
     $output = new div($template, $data);
 
     if ( $minify ) {

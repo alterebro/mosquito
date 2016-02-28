@@ -2,7 +2,7 @@
 
 **mosquito** is a Static Site Generator written in PHP that can also be used as a simple Content Management System. It converts your markdown files into HTML using the folder structure as URL router.
 
-Further documentation is available on the mosquito website, which was generated (♫♫ obviously ♫♫) with **mosquito** : http://alterebro.github.io/mosquito/
+Further documentation is available on the mosquito website, which was generated (♫♫ obviously ♫♫) using **mosquito** : http://alterebro.github.io/mosquito/
 
 ## Requirements
 
@@ -36,6 +36,7 @@ $ php -S localhost:8000 -t dist
 
 ## Libraries Used :
 
-- **Text-template** : Single-Class PHP5 template engine with support for if/loops/filters by Matthias Leuffen. ( https://github.com/dermatthes/text-template , https://dermatthes.github.io/text-template/ )
-- **ParseDown** : GitHub flavoured Markdown Parser in PHP by Emanuil Rusev. ( https://github.com/erusev/parsedown )
-- **armazon.css** minimalistic, lightweight and super simple CSS3 Boilerplate ( https://github.com/alterebro/armazon.css , http://alterebro.github.io/armazon.css/ )
+- **DIV** : Single class, one-file, template Engine for PHP with a powerful set of features. By DivEngine ( [https://github.com/divengine/div](https://github.com/divengine/div) ).
+- **MarkdownExtra** : PHP Parser for Markdown Extra derived from the original John Gruber's Markdown.pl. By Michel Fortin ( [https://michelf.ca/projects/php-markdown/extra/](https://michelf.ca/projects/php-markdown/extra/) ,
+[https://github.com/michelf/php-markdown](https://github.com/michelf/php-markdown) ).
+- **armazon.css** minimalistic, lightweight and super simple CSS3 Boilerplate ( [https://github.com/alterebro/armazon.css](https://github.com/alterebro/armazon.css) , [http://alterebro.github.io/armazon.css/](http://alterebro.github.io/armazon.css/) ).

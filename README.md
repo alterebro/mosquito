@@ -8,6 +8,14 @@ Further documentation is available on the mosquito website, which was generated 
 
 - PHP ( *>= 5.4.0* ), when using mosquito as CMS, the Apache `mod_rewrite` is required in order to create the friendly URLs.
 
+## One-line Installer
+
+Execute the following command on a terminal and a **mosquito** site will be available on http://localhost:8000
+
+```bash
+mkdir mosquito && curl -L https://github.com/alterebro/mosquito/tarball/v0.2.0 | tar zx -C mosquito --strip-components=1 && cd mosquito && php -f index.php build && php -S localhost:8000 -t dist
+```
+
 ## Basic Info
 
 Generating a Static Site :

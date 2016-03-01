@@ -17,8 +17,8 @@ $_CONFIG = array(
 	'file_extension' => '.md',
 	'minify_output' => true,
 
-    // 'dist_url' => 'http://localhost:8000/',
-    'dist_url' => 'http://alterebro.github.io/mosquito/',
+    'dist_url' => 'http://localhost:8000/',
+    // 'dist_url' => 'http://alterebro.github.io/mosquito/',
     'dist_folder' => 'dist/',
     'dist_extension' => '.html',
 

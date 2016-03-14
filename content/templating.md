@@ -29,7 +29,7 @@ title : This is the Title
 my_custom_variable_01 : This is a custom variable
 my_custom_variable_02 : Another custom variable
 ```
-You can access them later using the normal template variable syntax used in mosquito: {= my_custom_variable_01}. These are the default Page template variables :
+You can access them later using the normal template variable syntax used in mosquito: `{$ my_custom_variable_01}`. These are the default Page template variables :
 
 ```
 {$ metadata.title}

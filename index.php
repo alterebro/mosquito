@@ -33,8 +33,10 @@ $_PATH = array(
 	'url' => (PHP_SAPI == "cli")
         ? $_CONFIG['dist_url']
         : 'http://' . $_SERVER['HTTP_HOST'] . dirname( $_SERVER['PHP_SELF'] ) . ((dirname($_SERVER['PHP_SELF']) == '/') ? '' : '/'),
-	'root' => realpath(dirname(__FILE__)) . '/',
-	'content' => realpath(dirname(__FILE__)) . '/' . $_CONFIG['content_folder'],
+	// 'root' => realpath(dirname(__FILE__)) . '/',
+    'root' => DIRECTORY_SEPARATOR . get_absolute_path(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
+	// 'content' => realpath(dirname(__FILE__)) . '/' . $_CONFIG['content_folder'],
+    'content' => DIRECTORY_SEPARATOR . get_absolute_path(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $_CONFIG['content_folder'],
 );
 
 $_DATA = array(

@@ -71,9 +71,10 @@ $_default_metadata = $_DATA['metadata'];
 		? '/' . trim( $_PATH['content'].$_QUERY, '/' ) . '/index' . $_CONFIG['file_extension']
 		: '/' . trim( $_PATH['content'], '/') . '/' . $_QUERY . $_CONFIG['file_extension'];
 
-	// _is_404
+	// _is_404 ? is_homepage?
 	// -------------------
 	$_DATA['is_404'] = ( file_exists($_DATA['file']) ) ? false : true;
+    $_DATA['is_homepage'] = !$_QUERY;
 
     // _extract_content
 	// -------------------

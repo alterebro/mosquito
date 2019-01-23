@@ -54,4 +54,5 @@ You can access them later using the normal template variable syntax used in mosq
 ```
 {$ path.url}
 {$ is_404}
+{$ is_homepage}
 ```

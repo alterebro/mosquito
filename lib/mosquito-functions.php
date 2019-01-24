@@ -3,6 +3,17 @@ use \Michelf\MarkdownExtra;
 
 function extract_content($src) {
 
+	// Empty by default
+	$_output = array(
+		'metadata' => '',
+		'content' => '',
+	);
+
+	// Exit if no file
+	if ( !file_exists($src) ) { return $_output; }
+
+	// ---
+	// Get data if file exists
 	$contents = file_get_contents( $src );
 	$metadata = [
         'timestamp' => filemtime($src),
@@ -21,10 +32,11 @@ function extract_content($src) {
 	$content = $MarkdownParser->transform($contents);
 
 	unset($contents);
-	return array(
-		'metadata' => $metadata,
-		'content' => $content,
-	);
+
+	// Set and return data
+	$_output['metadata'] = $metadata;
+	$_output['content'] = $content;
+	return $_output;
 }
 
 // http://www.php.net/manual/en/function.realpath.php#84012

@@ -29,10 +29,14 @@ $_CONFIG = array(
 $_PATH = array(
 	'path' => (PHP_SAPI == "cli")
         ? $_CONFIG['dist_url']
-        : dirname($_SERVER['PHP_SELF']) . ((dirname($_SERVER['PHP_SELF']) == '/') ? '' : '/'),
+        // : dirname($_SERVER['PHP_SELF']) . ((dirname($_SERVER['PHP_SELF']) == '/') ? '' : '/'),
+        : dirname($_SERVER['SCRIPT_NAME']) . ((dirname($_SERVER['SCRIPT_NAME']) == '/') ? '' : '/'),
 	'url' => (PHP_SAPI == "cli")
         ? $_CONFIG['dist_url']
-        : 'http://' . $_SERVER['HTTP_HOST'] . dirname( $_SERVER['PHP_SELF'] ) . ((dirname($_SERVER['PHP_SELF']) == '/') ? '' : '/'),
+        // : 'http://' . $_SERVER['HTTP_HOST'] . dirname( $_SERVER['PHP_SELF'] ) . ((dirname($_SERVER['PHP_SELF']) == '/') ? '' : '/'),
+        : (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443 ) ? 'https' : 'http') .
+          '://' . $_SERVER['HTTP_HOST'] .
+          dirname($_SERVER['SCRIPT_NAME']) . ((dirname($_SERVER['SCRIPT_NAME']) == '/') ? '' : '/'),
 	// 'root' => realpath(dirname(__FILE__)) . '/',
     'root' => DIRECTORY_SEPARATOR . get_absolute_path(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
 	// 'content' => realpath(dirname(__FILE__)) . '/' . $_CONFIG['content_folder'],

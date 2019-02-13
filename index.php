@@ -77,7 +77,7 @@ $_default_metadata = $_DATA['metadata'];
 
 	// _is_404 ? is_homepage?
 	// -------------------
-	$_DATA['is_404'] = ( file_exists($_DATA['file']) ) ? false : true;
+    $_DATA['is_404'] = ( !file_exists($_DATA['file']) || $_QUERY == '404' );
     $_DATA['is_homepage'] = !$_QUERY;
 
     // _extract_content

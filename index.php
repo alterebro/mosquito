@@ -80,6 +80,12 @@ $_default_metadata = $_DATA['metadata'];
     $_DATA['is_404'] = ( !file_exists($_DATA['file']) || $_QUERY == '404' );
     $_DATA['is_homepage'] = !$_QUERY;
 
+    // _page_id
+	// -------------------
+    $page_id = str_replace('/', '-', $_QUERY);
+    $page_id = ($_DATA['is_404']) ? 'notfound' : ( ($_DATA['is_homepage']) ? 'homepage' : $page_id );
+    $_DATA['page_id'] = $page_id;
+
     // _extract_content
 	// -------------------
     $file_to_extract = ( file_exists($_DATA['file']) ) ? $_DATA['file'] : $_PATH['content'] .'404'. $_CONFIG['file_extension'];

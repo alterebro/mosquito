@@ -8,12 +8,12 @@ function init_share() {
 	};
 
 	var socialnetwork_baseurl = {
-		facebook: "http://www.facebook.com/sharer.php?u={url}&t={title}",
-		twitter: "http://twitter.com/share?text={title}&url={url}",
+		facebook: "https://www.facebook.com/sharer.php?u={url}&t={title}",
+		twitter: "https://twitter.com/share?text={title}&url={url}",
 		googleplus: "https://plusone.google.com/_/+1/confirm?hl=en&url={url}",
-		linkedin: "http://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}&summary={content}",
-		tumblr: "http://www.tumblr.com/share?v=3&u={url}",
-		pinterest: "http://pinterest.com/pin/create/button/?url={url}&media={image}&description={content}",
+		linkedin: "https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}&summary={content}",
+		tumblr: "https://www.tumblr.com/share?v=3&u={url}",
+		pinterest: "https://pinterest.com/pin/create/button/?url={url}&media={image}&description={content}",
 		email: "mailto:?subject={title}&body={content}{url}"
 	};
 
